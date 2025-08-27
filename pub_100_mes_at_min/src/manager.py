@@ -14,6 +14,10 @@ class Manager:
         documents = self.data.get_100_messages()
         for document in documents:
             if document["Antisemitic"]:
-                send_event('raw_tweets_antisemitic', str(document))
+                document["_id"] = str(document["_id"])
+                document["CreateDate"] = document["CreateDate"].isoformat()
+                send_event('raw_tweets_antisemitic', document)
             else:
-                send_event('raw_tweets_not_antisemitic', str(document))
+                document["_id"] = str(document["_id"])
+                document["CreateDate"] = document["CreateDate"].isoformat()
+                send_event('raw_tweets_not_antisemitic', document)
