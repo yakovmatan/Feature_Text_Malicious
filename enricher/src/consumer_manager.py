@@ -1,17 +1,18 @@
 from kafka_configuration import consumer
 
 
-class Consumer:
+class ConsumerManager:
 
     def __init__(self, topic1='raw_tweets_antisemitic', topic2='raw_tweets_not_antisemitic'):
         self.events = consumer(topic1, topic2)
 
-    def print_events(self):
+    def get_massages_from_kafka(self):
         for messages in self.events:
-            print(messages.topic)
+            print(messages.value)
 
-c = Consumer()
-c.print_events()
+
+c = ConsumerManager()
+c.get_massages_from_kafka()
 
 
 
