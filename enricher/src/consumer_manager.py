@@ -1,3 +1,5 @@
+from enricher import Enricher
+from read_files import ReadFile
 from kafka_configuration import consumer
 
 
@@ -5,10 +7,21 @@ class ConsumerManager:
 
     def __init__(self, topic1='raw_tweets_antisemitic', topic2='raw_tweets_not_antisemitic'):
         self.events = consumer(topic1, topic2)
+        self.enricher = Enricher()
+        self.weapons = ReadFile(path='../data/weapon_list.txt').read_file().split('\n')
+
 
     def get_massages_from_kafka(self):
         for messages in self.events:
-            print(messages.value)
+            self.enricher.receiving_document(messages.value)
+            new_document = (
+                self.enricher
+                .sentiment_of_text(messages.value["text"])
+                .add_latest_data(messages.value["text"])
+                .weapon_in_text(messages.value["text"], self.weapons)
+                .document
+            )
+            print(new_document)
 
 
 c = ConsumerManager()

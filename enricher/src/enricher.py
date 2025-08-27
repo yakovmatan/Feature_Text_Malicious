@@ -1,3 +1,6 @@
+import re
+from datetime import datetime
+
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
@@ -24,12 +27,20 @@ class Enricher:
 
     def weapon_in_text(self, text, weapons: list):
         words = text.split()
-        self.document["weapons_detected"] = []
-        for w in weapons:
-            if w in words:
-                self.document["weapons_detected"].append(w)
-        if not self.document["weapons_detected"]:
-            self.document["weapons_detected"] = ""
+        detected = [w for w in weapons if w in words]
+        self.document["weapons_detected"] = detected if detected else ""
+
+        return self
+
+    def add_latest_data(self, text):
+        matches = re.findall(r"\b\d{4}-\d{2}-\d{2}\b", text)
+
+        if matches:
+            dates = [datetime.strptime(m, "%Y-%m-%d") for m in matches]
+            latest = max(dates)
+            self.document["relevant_timestamp"] = latest.strftime("%Y-%m-%d")
+        else:
+            self.document["relevant_timestamp"] = ""
 
         return self
 

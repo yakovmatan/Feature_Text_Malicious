@@ -1,41 +1,31 @@
-﻿A-bomb
-ammo
+﻿ammo
 ammunition
 armaments
 arms
 arrow
-assault rifle
-atom bomb
-atomic bomb
 autocannon
-automatic rifle
+ak47
 axe
 ballista
-ballistic missile
+ballistic
 bat
 baton
-battle axe
 bayonet
 bazooka
-billy club
-biological weapon
 blackjack
 blade
 blaster
 blowgun
 blowpipe
 bludgeon
-bomb
+Bomb
 boobytrap
 boomerang
-bow and arrow
-Bowie knife
-brass knuckles
+bow
 bullet
 bullwhip
 cannon
 carbine
-cat o'nine tails
 catapult
 cleaver
 club
@@ -44,7 +34,6 @@ cudgel
 cutlass
 dagger
 dart
-depth charge
 epee
 explosives
 firearm
@@ -52,14 +41,10 @@ flail
 flamethrower
 flintlock
 foil
-Gatling gun
 grenade
-grenade launcher
-guided missile
-gun
+Gun
 gunpowder
 halberd
-hand grenade
 handgun
 harpoon
 hatchet
@@ -74,23 +59,17 @@ lance
 landmine
 longbow
 longsword
+IED
 mace
 machete
-machine gun
 magnum
 maul
 mine
 missile
-morning star
 mortar
 munitions
 musket
-mustard gas
 muzzleloader
-nerve gas
-night stick
-nuclear bomb
-nunchaku (nunchucks)
 onager
 ordnance
 peashooter
@@ -104,7 +83,6 @@ rapier
 revolver
 rifle
 rocket
-rocket launcher
 saber
 scimitar
 scythe
@@ -118,14 +96,11 @@ slingshot
 spear
 spiked mace
 stiletto
-stun gun
-submachine gun
 switchblade
 sword
 tank
 tank gun
 taser
-tear gas
 tomahawk
 torpedo
 trebuchet
@@ -134,6 +109,5 @@ tripwire
 truncheon
 uzi
 weapon
-weapon of mass destruction
 weaponry
 whip
