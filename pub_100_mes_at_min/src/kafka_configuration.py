@@ -11,8 +11,7 @@ def produce():
                          value_serializer=lambda x:
                          json.dumps(x).encode('utf-8'))
 
-def send_event(topic, event):
-    producer = produce()
+def send_event(producer, topic, event):
     producer.send(topic, event)
     producer.flush()
 

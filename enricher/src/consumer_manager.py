@@ -1,6 +1,6 @@
 from enricher import Enricher
 from read_files import ReadFile
-from kafka_configuration import consumer
+from kafka_configuration import consumer, produce, send_event
 
 
 class ConsumerManager:
@@ -9,9 +9,10 @@ class ConsumerManager:
         self.events = consumer(topic1, topic2)
         self.enricher = Enricher()
         self.weapons = ReadFile(path='../data/weapon_list.txt').read_file().split('\n')
+        self.producer = produce()
 
 
-    def get_massages_from_kafka(self):
+    def publish_messages(self):
         for messages in self.events:
             self.enricher.receiving_document(messages.value)
             new_document = (
@@ -21,11 +22,7 @@ class ConsumerManager:
                 .weapon_in_text(messages.value["text"], self.weapons)
                 .document
             )
-            print(new_document)
-
-
-c = ConsumerManager()
-c.get_massages_from_kafka()
-
-
-
+            if messages.topic == "raw_tweets_antisemitic":
+                send_event(self.producer, "enriched_preprocessed_tweets_antisemitic", new_document)
+            else:
+                send_event(self.producer, "enriched_preprocessed_not_tweets_antisemitic", new_document)

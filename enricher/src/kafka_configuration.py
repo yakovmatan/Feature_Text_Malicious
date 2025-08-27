@@ -26,8 +26,7 @@ def produce():
     except Exception as e:
         return {'producer error': e}
 
-def send_event(topic, event):
-    producer = produce()
+def send_event(producer, topic, event):
     producer.send(topic, event)
     producer.flush()
 
