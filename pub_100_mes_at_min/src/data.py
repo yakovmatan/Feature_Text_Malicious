@@ -9,8 +9,6 @@ class Data:
         self.connection = connection
         self.skipper_counter = 0
         self.collection = self.connection.db[self.connection.collection_name]
-        self.antisemitic = None
-        self.not_antisemitic = None
 
 
     def get_100_messages(self):
@@ -24,16 +22,3 @@ class Data:
             return result
         except PyMongoError:
             return {"error": "database_error"}
-
-
-    def split_data_per_category(self, documents, category="Antisemitic"):
-        category1 = []
-        category2 = []
-        for document in documents:
-            if document[category]:
-                category1.append(document)
-            else:
-                category2.append(document)
-
-        self.antisemitic = category1
-        self.not_antisemitic = category2
