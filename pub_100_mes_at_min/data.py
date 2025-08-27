@@ -5,8 +5,8 @@ from fetcher import Fetcher
 
 class Data:
 
-    def __init__(self):
-        self.connection = Fetcher()
+    def __init__(self, connection: Fetcher):
+        self.connection = connection
         self.skipper_counter = 0
         self.collection = self.connection.db[self.connection.collection_name]
         self.antisemitic = None
@@ -15,7 +15,11 @@ class Data:
 
     def get_100_messages(self):
         try:
-            result = self.collection.find({}, {"_id": 0}).skip(self.skipper_counter).limit(100)
+            result = self.collection.aggregate([
+                {'$sort': {'CreateDate': 1}},
+                {'$skip': self.skipper_counter},
+                {'$limit': 100}
+            ])
             self.skipper_counter += 100
             return result
         except PyMongoError:
