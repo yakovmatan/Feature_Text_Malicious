@@ -16,13 +16,12 @@ class Manager:
         for messages in events:
             document = messages.value
             document = self.processing_document(document)
-            self.publish_messages(document.topic)
+            self.publish_messages(document, messages.topic)
 
     def processing_document(self, document):
         text_processing = TextProcessing(document['text'])
         text_processing.cleaning_text()
         document['clean_text'] = text_processing.clean_text
-        document['original_text'] = document.pop('text')
         return document
 
 

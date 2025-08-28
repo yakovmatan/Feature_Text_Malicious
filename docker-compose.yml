@@ -42,6 +42,19 @@ services:
     depends_on:
       - kafka
 
+  processor:
+    build:
+      context: processor
+      dockerfile: Dockerfile
+    container_name: processor
+    environment:
+      KAFKA_BROKER: kafka:9092
+    ports:
+      - "8000:8000"
+    depends_on:
+      - kafka
+      - pub_100_mes_at_min
+
   enricher:
     build:
       context: enricher
@@ -54,3 +67,4 @@ services:
     depends_on:
       - kafka
       - pub_100_mes_at_min
+      - processor

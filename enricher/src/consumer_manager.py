@@ -1,6 +1,7 @@
-from enricher import Enricher
-from read_files import ReadFile
-from kafka_configuration import consumer, produce, send_event
+from src.enricher import Enricher
+from src.read_files import ReadFile
+from src.kafka_configuration import consumer, produce, send_event
+from src.text_processing import TextProcessing
 
 
 class ConsumerManager:
@@ -8,7 +9,10 @@ class ConsumerManager:
     def __init__(self, topic1='preprocessed_tweets_antisemitic', topic2='preprocessed_tweets_not_antisemitic'):
         self.events = consumer(topic1, topic2)
         self.enricher = Enricher()
-        self.weapons = ReadFile(path='../data/weapon_list.txt').read_file().split('\n')
+        self.weapons = ReadFile(path='data/weapon_list.txt').read_file()
+        self.proces = TextProcessing(self.weapons)
+        self.proces.cleaning_text()
+        self.weapons = self.proces.clean_text.split()
         self.producer = produce()
 
 
