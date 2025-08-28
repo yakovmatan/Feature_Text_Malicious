@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub_100
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub_100
+  template:
+    metadata:
+      labels:
+        app: pub_100
+    spec:
+      containers:
+      - name: pub_100
+        image: yakovthedocker/pub_100:1.1
+        ports:
+        - containerPort: 8000
+        env:
+          - name: KAFKA_BROKER
+            value: "kafka:9092"
+
