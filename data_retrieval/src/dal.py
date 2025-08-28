@@ -21,4 +21,3 @@ class Dal:
             return list(self.collection2.find({}, {'_id': 0}))
         except PyMongoError:
             return {"error": "database_error"}
-
