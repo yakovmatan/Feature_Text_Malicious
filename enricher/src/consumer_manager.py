@@ -21,9 +21,9 @@ class ConsumerManager:
             self.enricher.receiving_document(messages.value)
             new_document = (
                 self.enricher
-                .sentiment_of_text(messages.value["text"])
+                .sentiment_of_text(messages.value["clean_text"])
                 .add_latest_data(messages.value["text"])
-                .weapon_in_text(messages.value["text"], self.weapons)
+                .weapon_in_text(messages.value["clean_text"], self.weapons)
                 .document
             )
             if messages.topic == "preprocessed_tweets_antisemitic":

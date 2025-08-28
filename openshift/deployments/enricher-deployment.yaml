@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enricher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enricher
+  template:
+    metadata:
+      labels:
+        app: enricher
+    spec:
+      containers:
+      - name: pub_100
+        image: yakovthedocker/enricher:1.1
+        ports:
+        - containerPort: 8002
+        env:
+          - name: KAFKA_BROKER
+            value: "kafka:9092"
