@@ -1,4 +1,4 @@
-from manager import Manager
+from processor.src.manager import Manager
 
 
 if __name__ == '__main__':

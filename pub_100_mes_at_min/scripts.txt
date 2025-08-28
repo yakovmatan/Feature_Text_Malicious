@@ -1,0 +1,2 @@
+docker build -t pub_100_mes_at_min -f pub_100_mes_at_min/Dockerfile .
+docker run -d --name pub_100_mes_at_min --network Kafka_Malicious_Text -e KAFKA_BROKER=kafka-broker:9092 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=yakov -p 8010:8010 pub_100_mes_at_min

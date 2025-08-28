@@ -1,5 +1,5 @@
-from kafka_configuration import *
-from text_processing import TextProcessing
+from utils.kafka_configuration import *
+from utils.text_processing import TextProcessing
 
 class Manager:
     def __init__(self):
@@ -28,8 +28,8 @@ class Manager:
 
     def publish_messages(self,document, topic):
         if topic == 'raw_tweets_antisemitic':
-            send_event(self.new_antisemitic_topic, document, self.producer)
+            send_event( self.producer, self.new_antisemitic_topic, document)
         else:
-            send_event(self.new_not_antisemitic_topic, document, self.producer)
+            send_event(self.producer, self.new_not_antisemitic_topic, document)
 
 

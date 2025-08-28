@@ -1,4 +1,4 @@
-from manager import Manager
+from pub_100_mes_at_min.src.manager import Manager
 import time
 
 manager = Manager()

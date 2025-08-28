@@ -1,5 +1,5 @@
 from pymongo.errors import PyMongoError
-from fetcher import Fetcher
+from pub_100_mes_at_min.src.fetcher import Fetcher
 
 
 

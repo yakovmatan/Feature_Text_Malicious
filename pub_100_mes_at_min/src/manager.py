@@ -1,6 +1,6 @@
-from fetcher import Fetcher
-from kafka_configuration import produce, send_event
-from data import Data
+from pub_100_mes_at_min.src.fetcher import Fetcher
+from utils.kafka_configuration import produce, send_event
+from pub_100_mes_at_min.src.data import Data
 
 
 class Manager:

@@ -1,4 +1,4 @@
-from consumer_manager import ConsumerManager
+from persister.src.consumer_manager import ConsumerManager
 
 
 def main():

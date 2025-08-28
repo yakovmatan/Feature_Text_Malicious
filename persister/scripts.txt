@@ -1,0 +1,2 @@
+docker build -t persister -f persister/Dockerfile .
+docker run -d --name persister --network Kafka_Malicious_Text -e KAFKA_BROKER=kafka-broker:9092 -p 8040:8040 persister

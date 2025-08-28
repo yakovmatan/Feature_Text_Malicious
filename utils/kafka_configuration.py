@@ -3,7 +3,7 @@ from kafka import KafkaProducer
 from kafka import KafkaConsumer
 import os
 
-kafka_broker = os.getenv('KAFKA_BROKER', 'localhost:9092')
+kafka_broker = os.getenv('KAFKA_BROKER', 'kafka-broker:9092')
 
 
 def consumer(topic1, topic2):
@@ -14,7 +14,7 @@ def consumer(topic1, topic2):
                                bootstrap_servers=[kafka_broker])
         return events
     except Exception as e:
-        return {'consume error': e}
+        raise RuntimeError(f"consumer creation failed: {e}")
 
 
 def produce():
@@ -24,7 +24,7 @@ def produce():
                              json.dumps(x).encode('utf-8'))
         return producer
     except Exception as e:
-        return {'producer error': e}
+        raise RuntimeError(f"producer creation failed: {e}")
 
 def send_event(producer, topic, event):
     producer.send(topic, event)

@@ -1,0 +1,2 @@
+docker build -t data_retrieval -f data_retrieval/Dockerfile .
+docker run -d --name data_retrieval --network Kafka_Malicious_Text -e KAFKA_BROKER=kafka-broker:9092 -e MONGODB_USER: admin -e MONGODB_PASSWORD: yakov -e MONGODB_DATABASE: tweets -e MONGODB_HOST: mongodb -e MONGODB_PORT: 27017 -e MONGODB_AUTH_DB: admin -p 8004:8004 data_retrieval

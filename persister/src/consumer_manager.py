@@ -1,5 +1,5 @@
-from kafka_configuration import consumer
-from mongodb_connection import DbConnection
+from utils.kafka_configuration import consumer
+from persister.src.mongodb_connection import DbConnection
 
 
 class ConsumerManager:

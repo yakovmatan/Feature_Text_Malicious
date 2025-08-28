@@ -1,0 +1,2 @@
+docker build -t processor -f processor/Dockerfile .
+docker run -d --name processor --network Kafka_Malicious_Text -e KAFKA_BROKER=kafka-broker:9092 -p 8020:8020 processor

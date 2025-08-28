@@ -1,7 +1,7 @@
-from src.enricher import Enricher
-from src.read_files import ReadFile
-from src.kafka_configuration import consumer, produce, send_event
-from src.text_processing import TextProcessing
+from enricher.src.enricher import Enricher
+from enricher.src.read_files import ReadFile
+from utils.kafka_configuration import consumer, produce, send_event
+from utils.text_processing import TextProcessing
 
 
 class ConsumerManager:

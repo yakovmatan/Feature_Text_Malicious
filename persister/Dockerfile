@@ -2,10 +2,11 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY persister/requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY src .
+COPY utils /app/utils
+COPY persister/src /app/persister/src
 
-CMD ["python", "main.py"]
+CMD ["python", "-m", "persister.src.main"]
