@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pub_100
+  name: pub-100
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pub_100
+      app: pub-100
   template:
     metadata:
       labels:
-        app: pub_100
+        app: pub-100
     spec:
       containers:
-      - name: pub_100
+      - name: pub-100
         image: yakovthedocker/pub_100:1.1
         ports:
         - containerPort: 8000
