@@ -5,10 +5,6 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 
-
-
-
-
 class TextProcessing:
     def __init__(self, original_text):
         self.nltk_downloads()
@@ -20,6 +16,14 @@ class TextProcessing:
         nltk.download('wordnet')
         nltk.download('omw-1.4')
         nltk.download('averaged_perceptron_tagger_eng')
+
+    def cleaning_text(self):
+        self.removes_punctuation_marks()
+        self.removes_special_characters()
+        self.removing_unnecessary_whitespace_characters()
+        self.remove_stopwords()
+        self.change_to_lower()
+        self.lemmatization()
 
     def removes_punctuation_marks(self):
         self.clean_text = re.sub(r'[^\w\s]', '', self.clean_text)
@@ -64,24 +68,6 @@ class TextProcessing:
         else:
             return 'n'
 
-
-
-
-
-p = TextProcessing('if, i wont Want I wanted    running   hey/.')
-
-p.removes_punctuation_marks()
-print(p.clean_text)
-p.removes_special_characters()
-print(p.clean_text)
-p.removing_unnecessary_whitespace_characters()
-print(p.clean_text)
-p.remove_stopwords()
-print(p.clean_text)
-p.change_to_lower()
-print(p.clean_text)
-p.lemmatization()
-print(p.clean_text)
 
 
 
