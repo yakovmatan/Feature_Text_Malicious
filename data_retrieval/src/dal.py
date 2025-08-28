@@ -16,3 +16,9 @@ class Dal:
         except PyMongoError:
             return {"error": "database_error"}
 
+    def find_all_tweets_not_antisemitic(self):
+        try:
+            return list(self.collection2.find())
+        except PyMongoError:
+            return {"error": "database_error"}
+
