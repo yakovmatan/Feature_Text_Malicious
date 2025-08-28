@@ -25,6 +25,17 @@ services:
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       ALLOW_PLAINTEXT_LISTENER: "yes"
 
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: yakov
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
 
   pub_100_mes_at_min:
     build:
@@ -68,3 +79,6 @@ services:
       - kafka
       - pub_100_mes_at_min
       - processor
+
+volumes:
+  mongo_data:
