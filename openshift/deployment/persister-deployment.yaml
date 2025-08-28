@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: persister
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: persister
+  template:
+    metadata:
+      labels:
+        app: persister
+    spec:
+      containers:
+      - name: pub_100
+        image: yakovthedocker/persister:1.1
+        ports:
+        - containerPort: 8003
+        env:
+          - name: KAFKA_BROKER
+            value: "kafka:9092"
+          - name: MONGODB_HOST
+            value: mongodb
+          - name: MONGODB_USER
+            value: "admin"
+          - name: MONGODB_PASSWORD
+            value: "yakov"
+          - name: MONGODB_DATABASE
+            value: "tweets"
+          - name: MONGODB_AUTH_DB
+            value: "admin"
+          - name: MONGODB_PORT
+            value: "27017"
