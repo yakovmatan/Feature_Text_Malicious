@@ -5,7 +5,7 @@ from kafka_configuration import consumer, produce, send_event
 
 class ConsumerManager:
 
-    def __init__(self, topic1='raw_tweets_antisemitic', topic2='raw_tweets_not_antisemitic'):
+    def __init__(self, topic1='preprocessed_tweets_antisemitic', topic2='preprocessed_tweets_not_antisemitic'):
         self.events = consumer(topic1, topic2)
         self.enricher = Enricher()
         self.weapons = ReadFile(path='../data/weapon_list.txt').read_file().split('\n')
@@ -22,7 +22,7 @@ class ConsumerManager:
                 .weapon_in_text(messages.value["text"], self.weapons)
                 .document
             )
-            if messages.topic == "raw_tweets_antisemitic":
+            if messages.topic == "preprocessed_tweets_antisemitic":
                 send_event(self.producer, "enriched_preprocessed_tweets_antisemitic", new_document)
             else:
                 send_event(self.producer, "enriched_preprocessed_not_tweets_antisemitic", new_document)
