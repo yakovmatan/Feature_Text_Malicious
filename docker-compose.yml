@@ -25,6 +25,17 @@ services:
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       ALLOW_PLAINTEXT_LISTENER: "yes"
 
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: yakov
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
 
   pub_100_mes_at_min:
     build:
@@ -68,3 +79,28 @@ services:
       - kafka
       - pub_100_mes_at_min
       - processor
+
+  persister:
+    build:
+      context: persister
+      dockerfile: Dockerfile
+    container_name: persister
+    environment:
+      KAFKA_BROKER: kafka:9092
+      MONGODB_USER: admin
+      MONGODB_PASSWORD: yakov
+      MONGODB_DATABASE: tweets
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_AUTH_DB: admin
+    ports:
+      - "8003:8003"
+    depends_on:
+      - kafka
+      - mongodb
+      - pub_100_mes_at_min
+      - processor
+      - enricher
+
+volumes:
+  mongo_data:
