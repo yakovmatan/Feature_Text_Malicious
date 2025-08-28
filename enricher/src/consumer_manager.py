@@ -29,4 +29,4 @@ class ConsumerManager:
             if messages.topic == "preprocessed_tweets_antisemitic":
                 send_event(self.producer, "enriched_preprocessed_tweets_antisemitic", new_document)
             else:
-                send_event(self.producer, "enriched_preprocessed_not_tweets_antisemitic", new_document)
+                send_event(self.producer, "enriched_preprocessed_tweets_not_antisemitic", new_document)
