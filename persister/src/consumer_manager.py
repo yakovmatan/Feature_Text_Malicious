@@ -1,9 +1,8 @@
-from datetime import datetime, timezone
 from kafka_configuration import consumer
 from mongodb_connection import DbConnection
 
 
-class ConsumerMassageInteresting:
+class ConsumerManager:
 
     def __init__(self, topic1='enriched_preprocessed_tweets_antisemitic', topic2='enriched_preprocessed_tweets_not_antisemitic', collection1='tweets_antisemitic', collection2="tweets_not_antisemitic"):
         self.events = consumer(topic1, topic2)
