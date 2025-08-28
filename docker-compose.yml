@@ -102,5 +102,28 @@ services:
       - processor
       - enricher
 
+  data_retrieval:
+    build:
+      context: data_retrieval
+      dockerfile: Dockerfile
+    container_name: data_retrieval
+    environment:
+      MONGODB_USER: admin
+      MONGODB_PASSWORD: yakov
+      MONGODB_DATABASE: tweets
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_AUTH_DB: admin
+    ports:
+      - "8004:8004"
+    depends_on:
+      - kafka
+      - mongodb
+      - pub_100_mes_at_min
+      - processor
+      - enricher
+      - persister
+
+
 volumes:
   mongo_data:

@@ -16,7 +16,9 @@ class Data:
             result = self.collection.aggregate([
                 {'$sort': {'CreateDate': 1}},
                 {'$skip': self.skipper_counter},
-                {'$limit': 100}
+                {'$limit': 100},
+                {'$project': {'_id': 0}}
+
             ])
             self.skipper_counter += 100
             return result

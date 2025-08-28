@@ -12,13 +12,13 @@ class Dal:
 
     def find_all_tweets_antisemitic(self):
         try:
-            return list(self.collection1.find())
+            return list(self.collection1.find({}, {'_id': 0}))
         except PyMongoError:
             return {"error": "database_error"}
 
     def find_all_tweets_not_antisemitic(self):
         try:
-            return list(self.collection2.find())
+            return list(self.collection2.find({}, {'_id': 0}))
         except PyMongoError:
             return {"error": "database_error"}
 
